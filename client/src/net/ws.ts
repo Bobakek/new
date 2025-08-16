@@ -18,6 +18,10 @@ export class Net {
         resolve();
       };
       this.ws.onmessage = (e) => this.handle(e);
+      this.ws.onerror = (e) => {
+        console.error("WebSocket error", e);
+        this.hud.addChat("system", "Connection error. Please refresh to reconnect or check server status.");
+      };
     });
   }
 
